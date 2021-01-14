@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  border: 5px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 30px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+  position: relative;
+  hetght: 50%;
+  
+}
+
+ul li:hover {
+  background-color: #eee;
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+}
+
+.close:hover {background: #bbb;}
+
+</style>
+</head>
+<body>
+<center> <h1> My To-Do list </h1>  </center>
+<h2><a href="{% url 'td_write'  %}"> <button style="background-color: aqua; position: relative; width:auto; height:40px; float:inline-start; left: 1300px; " >Add a thing to do </button> </a> </h2>
+
+
+
+
+
+{% for list in lists %}
+
+
+<ul>
+  <li>{{list.title}}<span class="close">&times;</span></li>
+  
+</ul>
+{% endfor %}
+<script>
+var closebtns = document.getElementsByClassName("close");
+var i;
+
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    this.parentElement.style.display = 'none';
+  });
+}
+</script>
+{%block content%}{% endblock %}
+</body>
+</html>
